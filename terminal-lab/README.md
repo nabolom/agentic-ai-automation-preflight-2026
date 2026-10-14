@@ -8,6 +8,7 @@ La meta es que puedas trabajar con tu repo propio y entender qué está pasando 
 
 - ubicarte en una carpeta y explicar dónde estás;
 - crear, leer y modificar un archivo sin perderte;
+- hacer una modificación temporal, revisar el diff y restaurarla sin borrar tu commit de práctica;
 - distinguir un comando, sus argumentos, su salida y su error;
 - revisar cambios con Git y guardar un primer commit;
 - describir qué hiciste y cómo volver a un estado anterior;
@@ -190,6 +191,22 @@ git push
 ```
 
 **Checkpoint 5:** abre tu repo en GitHub y localiza el commit. Esa URL y ese historial son parte de tu evidencia.
+
+## 5a. Haz un cambio temporal y recupéralo
+
+Esta microacción completa la habilidad de recuperar cambios sin usar comandos destructivos. Abre `notes/terminal-lab/prueba.txt` en VS Code o en tu editor y agrega al final una línea temporal, por ejemplo: `Cambio temporal de H8`. Guarda el archivo, pero no hagas otro commit todavía.
+
+En macOS/Linux y Windows PowerShell:
+
+```bash
+git diff -- notes/terminal-lab/prueba.txt
+git restore -- notes/terminal-lab/prueba.txt
+git status --short -- notes/terminal-lab/prueba.txt
+```
+
+Comprueba que `git diff` mostró tu línea temporal y que, después de `git restore`, el archivo volvió al contenido del commit de práctica y el estado queda limpio. No uses `git reset --hard` para esta práctica.
+
+**Checkpoint 5a:** puedes explicar que `git restore` recupera aquí un cambio que todavía no estaba commiteado. Si el cambio ya estuviera en un commit, `git restore` no borra la historia: primero revisarías `git log`/`git show` y, si realmente necesitas deshacerlo, harías un nuevo commit de reversión.
 
 ## 6. Provoca un error pequeño y léelo
 

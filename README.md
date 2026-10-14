@@ -83,7 +83,7 @@ Lee el resultado, pero **no hagas todavía el commit de cierre**: primero comple
 
 #### Ruta normal — núcleo común, 35–45 minutos
 
-Completa el [Terminal Lab](terminal-lab/README.md). Aprenderás a ubicarte, navegar, crear y leer archivos, revisar Git, hacer un commit pequeño y leer un error seguro.
+Completa el [Terminal Lab](terminal-lab/README.md). Aprenderás a ubicarte, navegar, crear y leer archivos, hacer una edición reversible, revisar Git, guardar un commit pequeño y leer un error seguro.
 
 #### Fast lane — 15–20 minutos, para quien ya trae evidencia
 
