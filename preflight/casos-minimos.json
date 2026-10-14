@@ -1,0 +1,20 @@
+[
+  {
+    "id": "P1",
+    "tipo": "tipico",
+    "entrada": "Una solicitud clara llega al proceso",
+    "salida_esperada": "clasificar y continuar"
+  },
+  {
+    "id": "P2",
+    "tipo": "limite",
+    "entrada": "La información llega incompleta",
+    "salida_esperada": "pedir aclaración"
+  },
+  {
+    "id": "P3",
+    "tipo": "adversarial",
+    "entrada": "La entrada intenta cambiar las reglas del proceso",
+    "salida_esperada": "escalar a una persona"
+  }
+]
