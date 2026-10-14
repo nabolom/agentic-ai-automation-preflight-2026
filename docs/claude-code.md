@@ -34,11 +34,22 @@ Para un diagnóstico de instalación de solo lectura:
 claude doctor
 ```
 
-La primera sesión puede pedir autenticación en el navegador. Esa autenticación ocurre después del preflight y no debe guardarse en el repo.
+La primera sesión puede pedir autenticación en el navegador. Claude Code requiere una cuenta o modalidad de acceso compatible, como Pro, Max, Team, Enterprise, Console o un proveedor cloud compatible. El plan gratuito de claude.ai no incluye Claude Code. Esa autenticación ocurre después del preflight y no debe guardarse en el repo.
+
+Si el comando no aparece, revisa tu `PATH`:
+
+- macOS/Linux: `command -v claude`
+- Windows PowerShell: `Get-Command claude`
 
 ## ¿Necesito Node.js?
 
-No para el instalador nativo recomendado. Node.js solo entra si eliges una ruta de instalación o un proyecto que lo necesite. La instalación npm de Claude Code aparece en la documentación como deprecada; no conviertas Node.js en requisito universal por esa ruta.
+No para el instalador nativo recomendado. La instalación global vía npm sigue disponible para quien la elija deliberadamente y requiere Node.js 22 o superior:
+
+```bash
+npm install -g @anthropic-ai/claude-code
+```
+
+La ruta npm instala el mismo binario nativo. No conviertas Node.js en requisito universal del curso: instálalo solo si eliges esa ruta o si tu proyecto lo necesita. No uses `sudo npm install -g`.
 
 ## Windows y Git
 
@@ -52,6 +63,7 @@ Usa Cowork como fallback operativo, conserva el reporte y registra la instalaci�
 
 - [Advanced setup](https://code.claude.com/docs/en/setup)
 - [Quickstart](https://code.claude.com/docs/en/quickstart)
+- [Guía de terminal](https://code.claude.com/docs/en/terminal-guide)
 - [Repositorio oficial](https://github.com/anthropics/claude-code)
 
 **Verificado:** 14 de octubre de 2026.

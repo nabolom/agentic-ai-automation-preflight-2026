@@ -18,7 +18,7 @@ cd TU-REPO
 git status
 ```
 
-**Descargar ZIP** crea una carpeta sin historial. Es un fallback útil si Git falla, pero no es el flujo que queremos practicar. Si usas ZIP, crea después tu repo propio y sube los archivos desde GitHub web o GitHub Desktop.
+**Descargar ZIP** crea una carpeta sin historial. Es un fallback útil si Git falla, pero no es el flujo que queremos practicar. Si usas ZIP, registra el bloqueo y crea después tu repo propio desde GitHub web o GitHub Desktop.
 
 ## 3. GitHub Desktop
 
@@ -27,35 +27,67 @@ En macOS o Windows puedes usar GitHub Desktop si la terminal todavía te resulta
 1. Inicia sesión.
 2. Clona tu repo propio.
 3. Ábrelo en el explorador o en una terminal.
-4. Revisa los cambios.
-5. Escribe un mensaje de commit.
-6. Pulsa **Commit** y luego **Push origin**.
+4. Sigue el [Terminal Lab](../terminal-lab/README.md) o su fast lane.
+5. Revisa los cambios.
+6. Escribe un mensaje de commit.
+7. Pulsa **Commit** y luego **Push origin**.
 
 GitHub Desktop no elimina la idea de Git: solo hace visibles las mismas operaciones.
 
-## 4. Tu primer registro
+## 4. Ejecuta el diagnóstico antes de versionar la evidencia
 
-Ejecuta el preflight, revisa `evidence/preflight-report.md` y crea `notes/intent.md`. En esa nota escribe qué proceso o problema te gustaría explorar, sin datos sensibles.
+Desde la raíz de tu repo propio:
 
 ```bash
-mkdir -p notes evidence
-git add .
+python3 preflight/preflight.py
+```
+
+En Windows PowerShell:
+
+```powershell
+py preflight/preflight.py
+```
+
+Lee `evidence/preflight-report.md`. Si aparece `PARTIAL`, conserva el mensaje y sigue el fallback. No hagas todavía el primer commit general.
+
+## 5. Completa la Terminal Lab o la fast lane
+
+- **Ruta normal:** completa [`terminal-lab/README.md`](../terminal-lab/README.md), incluidos sus checkpoints del núcleo.
+- **Fast lane:** úsala solo si puedes mostrar un repo propio, un commit reciente, comprensión de `git status`/`git diff` y una falla o decisión documentada.
+
+La Terminal Lab enseña a revisar antes de confirmar. Por eso el commit de cierre de evidencia viene después de esta práctica.
+
+## 6. Escribe tu intención y crea el commit de cierre
+
+Completa `notes/intent.md` con el proceso, problema o automatización que quieres explorar. No uses datos sensibles.
+
+Para la Ruta normal, revisa y añade únicamente los tres archivos esperados:
+
+```bash
+git add evidence/preflight-report.md notes/intent.md notes/terminal-lab/prueba.txt
+git diff --cached
 git commit -m "chore: complete environment preflight"
 git push
 ```
 
-En Windows PowerShell puedes crear las carpetas así:
+Para la fast lane, añade solo los archivos que realmente existan:
 
-```powershell
-New-Item -ItemType Directory -Force notes,evidence
+```bash
+git add evidence/preflight-report.md notes/intent.md
+git diff --cached
+git commit -m "chore: complete environment preflight"
+git push
 ```
 
-## 5. Evidencia de llegada
+No uses `git add .` sin revisar. El staging explícito te ayuda a no subir archivos accidentales, configuraciones o secretos.
+
+## 7. Evidencia de llegada
 
 Llegas listo(a) para la siguiente indicación cuando puedes mostrar:
 
 - la URL de tu propio repo;
-- un primer commit visible;
 - `evidence/preflight-report.md`;
 - una nota de intención en `notes/intent.md`;
-- qué herramienta usarás y qué fallback tienes.
+- un commit de práctica o de cierre visible;
+- qué herramienta usarás y qué fallback tienes;
+- una decisión o siguiente paso que quieras explorar.

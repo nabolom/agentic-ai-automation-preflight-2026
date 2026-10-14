@@ -7,10 +7,11 @@
 - Python, Git, repo GitHub propio y Claude Code tienen estados explícitos.
 - Node.js/npm, GitHub CLI y base de datos aparecen como `DEFERRED`, no como bloqueos universales.
 - El script escribe `evidence/preflight-report.md` sin incluir secretos.
-- El README enseña cuenta de GitHub, Use this template, clonación, ZIP como fallback, commit y push.
+- El README enseña cuenta de GitHub, Use this template, clonación, ZIP como fallback, diagnóstico, Terminal Lab, commit de cierre y push.
 - La portada centra el título y muestra etiquetas de Python, Git/GitHub, Claude Code, Cowork, Node.js y API key.
 - Las instrucciones distinguen macOS, Windows PowerShell y GitHub Desktop.
-- La Terminal Lab tiene un núcleo obligatorio de 35–45 minutos, extensiones opcionales y Claude Code al final en modo de solo lectura.
+- La Terminal Lab tiene un núcleo obligatorio de 35–45 minutos, una fast lane de 15–20 minutos, extensiones opcionales y Claude Code al final en modo de solo lectura.
+- El orden visible es diagnóstico → Terminal Lab o fast lane → intención → staging explícito → commit de cierre.
 - Los checkpoints cubren carpeta actual, archivos, Git status/diff, commit, error seguro y verificación posterior.
 - Las fuentes de instalación de Claude Code apuntan a documentación oficial verificada el 14 de octubre de 2026.
 

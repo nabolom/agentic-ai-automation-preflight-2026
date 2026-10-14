@@ -14,7 +14,7 @@ Abre [`docs/git-y-github.md`](git-y-github.md). La secuencia mínima es: crear t
 
 ## No tengo Claude Code
 
-Marca `PARTIAL`, conserva el mensaje y usa Cowork como fallback. No instales Node.js solo para probar una ruta npm deprecada. Revisa [`docs/claude-code.md`](claude-code.md) cuando tengas tiempo.
+Marca `PARTIAL`, conserva el mensaje y usa Cowork como fallback. La autenticación de Claude Code ocurre después del preflight y requiere una modalidad de acceso compatible. Revisa [`docs/claude-code.md`](claude-code.md) cuando tengas tiempo.
 
 ## No tengo Python
 
@@ -22,7 +22,7 @@ Pide ayuda para instalar Python 3.9 o superior, o usa el fallback de leer `prefl
 
 ## No tengo Node.js
 
-No es un bloqueo del preflight ni del instalador nativo recomendado de Claude Code. Instálalo solo si el proyecto que elijas lo requiere.
+No es un bloqueo del preflight ni del instalador nativo recomendado de Claude Code. Instálalo solo si eliges la ruta npm, que requiere Node.js 22 o superior, o si el proyecto que elijas lo requiere.
 
 ## No tengo base de datos
 
