@@ -1,20 +1,33 @@
 # Fallbacks
 
-## Si no puedes ejecutar Python
+## No tengo cuenta de GitHub
 
-1. Abre `preflight/casos-minimos.json`.
-2. Confirma que puedes leer los tres casos y distinguir típico, límite y adversarial.
-3. Registra: sistema operativo, versión de Python si la conoces y el mensaje de error.
-4. Continúa con una copia ZIP o pide al facilitador una alternativa.
+Crea una cuenta antes de avanzar. Si la creación se bloquea, conserva una captura y trabaja temporalmente en una carpeta local; el objetivo de trazabilidad quedará pendiente hasta tener un repo propio.
 
-## Si Git no está instalado
+## No tengo Git
 
-Descarga el ZIP del repo o trabaja desde la carpeta que te compartió el facilitador. Git es útil, pero no es el objetivo de esta actividad.
+Usa GitHub Desktop en macOS o Windows. Si tampoco puedes instalarlo, descarga ZIP como último recurso y registra que esa ruta no conserva historial. El facilitador puede ayudarte a crear el repo y hacer el primer upload.
 
-## Si Claude Code no está disponible
+## No sé clonar
 
-No lo instales a ciegas. Marca el resultado como `PARTIAL` y conserva la salida. El facilitador indicará cuándo conviene usar Claude Code, Cowork u otra alternativa.
+Abre [`docs/git-y-github.md`](git-y-github.md). La secuencia mínima es: crear tu repo con la plantilla, copiar la URL, ejecutar `git clone URL`, entrar a la carpeta y comprobar `git status`.
 
-## Si algo pide una clave o acceso
+## No tengo Claude Code
 
-Detente. Este preflight no debe pedir una API key ni enviar datos. Guarda el mensaje, no pegues secretos y avisa al facilitador.
+Marca `PARTIAL`, conserva el mensaje y usa Cowork como fallback. No instales Node.js solo para probar una ruta npm deprecada. Revisa [`docs/claude-code.md`](claude-code.md) cuando tengas tiempo.
+
+## No tengo Python
+
+Pide ayuda para instalar Python 3.9 o superior, o usa el fallback de leer `preflight/casos-minimos.json` y registrar manualmente tu sistema, repo, herramienta disponible y bloqueo. El reporte automático quedará pendiente.
+
+## No tengo Node.js
+
+No es un bloqueo del preflight ni del instalador nativo recomendado de Claude Code. Instálalo solo si el proyecto que elijas lo requiere.
+
+## No tengo base de datos
+
+No instales una todavía. Primero define qué proceso quieres agentizar, qué datos usa, qué volumen tiene y qué salida necesita. La decisión de almacenamiento pertenece al diseño del proyecto.
+
+## Algo pide una clave
+
+Detente. Este preflight no necesita API keys ni debe enviar datos. Guarda el mensaje sin copiar secretos y avisa al facilitador.
