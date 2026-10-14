@@ -131,19 +131,19 @@ Git permite ver el estado de tu espacio y conservar decisiones.
 
 ```bash
 git status
-git diff -- notes/terminal-lab/prueba.txt
+git status --short -- notes/terminal-lab/prueba.txt
 ```
 
 En PowerShell los comandos de Git son los mismos:
 
 ```powershell
 git status
-git diff -- notes/terminal-lab/prueba.txt
+git status --short -- notes/terminal-lab/prueba.txt
 ```
 
-`git status` responde qué archivos cambiaron. `git diff` muestra la diferencia. No hagas `git add` todavía sin mirar la salida.
+`git status --short` muestra el estado compacto. Si aparece `?? notes/terminal-lab/prueba.txt`, el archivo está **no rastreado**; es normal que `git diff` no muestre todavía su contenido. En el siguiente paso lo prepararás con `git add` y lo revisarás con `git diff --cached`.
 
-**Checkpoint 4:** identifica el archivo que creaste y explica si Git lo muestra como no rastreado o modificado.
+**Checkpoint 4:** identifica el archivo que creaste, localiza `??` en la salida y explica la diferencia entre no rastreado y modificado.
 
 ## 5. Guarda un commit pequeño
 
@@ -272,7 +272,7 @@ Windows PowerShell:
 
 ```powershell
 Get-ChildItem -Recurse -File
-Select-String -Path .\* -Pattern 'terminal' -Recurse
+Get-ChildItem -Recurse -File | Select-String -Pattern 'terminal'
 ```
 
 `grep` busca texto dentro de archivos y muestra la línea donde aparece.
