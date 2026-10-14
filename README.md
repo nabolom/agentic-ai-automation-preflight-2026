@@ -77,7 +77,7 @@ py preflight/preflight.py
 
 El script no instala nada, no llama a una API y no necesita una API key. Escribe `evidence/preflight-report.md` sin guardar secretos.
 
-Lee el resultado, pero **no hagas todavía el commit general**. Si aparece `PARTIAL`, conserva el mensaje y sigue con el fallback correspondiente.
+Lee el resultado, pero **no hagas todavía el commit de cierre**: primero completa la Terminal Lab. Si aparece `PARTIAL`, conserva el mensaje y sigue con el fallback correspondiente.
 
 ### 3. Elige tu ritmo
 

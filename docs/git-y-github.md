@@ -48,7 +48,7 @@ En Windows PowerShell:
 py preflight/preflight.py
 ```
 
-Lee `evidence/preflight-report.md`. Si aparece `PARTIAL`, conserva el mensaje y sigue el fallback. No hagas todavía el primer commit general.
+Lee `evidence/preflight-report.md`. Si aparece `PARTIAL`, conserva el mensaje y sigue el fallback. No hagas todavía el commit de cierre: el commit pequeño de práctica ocurre en la Terminal Lab.
 
 ## 5. Completa la Terminal Lab o la fast lane
 
