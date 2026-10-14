@@ -55,7 +55,7 @@ cd TU-REPO
 
 #### Opción B — GitHub Desktop
 
-Abre GitHub Desktop, inicia sesión, clona tu repo propio y selecciona **Open in terminal**. Después continúa con los pasos de esta página.
+Abre GitHub Desktop, inicia sesión y clona tu repo propio. Si `git --version` funciona en la terminal que abras, selecciona **Open in terminal** y continúa con esta página. Si no funciona, completa la ruta visual de [`docs/fallback.md`](docs/fallback.md) y registra que la ruta de terminal quedó pendiente; no intentes ejecutar comandos de Git que tu terminal no reconoce.
 
 #### Descargar ZIP: solo como fallback
 
@@ -146,7 +146,7 @@ Dentro de Claude Code, empieza con una petición de solo lectura:
 Explica en lenguaje sencillo dónde estoy, qué archivos relevantes ves y cuál es el estado de Git. No modifiques ningún archivo ni ejecutes comandos destructivos.
 ```
 
-Si Claude Code no está disponible, marca `PARTIAL`, conserva el reporte y usa Cowork o el fallback documentado. El objetivo del preflight es llegar con evidencia, no convertir esta actividad en una sesión interminable de instalación.
+Si Claude Code no está disponible, marca `PARTIAL`, conserva el reporte y usa Cowork solo si tienes acceso compatible. Si tampoco tienes Cowork, sigue el fallback manual documentado. El objetivo del preflight es llegar con evidencia, no convertir esta actividad en una sesión interminable de instalación.
 
 ## Ya terminaste cuando puedes mostrar
 
@@ -167,9 +167,9 @@ Si Claude Code no está disponible, marca `PARTIAL`, conserva el reporte y usa C
 
 ## Qué revisa y qué no
 
-El preflight comprueba Python, Git, que estés trabajando dentro de un repositorio GitHub que no parece ser la plantilla, el dataset sintético y la disponibilidad de Claude Code.
+El preflight comprueba Python, Git, que la raíz Git coincida con esta carpeta, la identidad local del primer commit, que estés trabajando dentro de un repositorio GitHub que no sea la plantilla, el dataset sintético y la disponibilidad de Claude Code.
 
-La comprobación del repo es indirecta: detecta un remoto `origin` de GitHub que no parece contener el nombre de la plantilla. No inicia sesión en GitHub ni puede demostrar por sí sola quién es la persona propietaria.
+La comprobación del repo es indirecta: verifica que la raíz Git coincida con esta carpeta y compara el remoto `origin` con la pareja exacta de la plantilla. No inicia sesión en GitHub ni puede demostrar por sí sola quién es la persona propietaria.
 
 Claude Code es la ruta principal del curso. Si no está disponible, el resultado será `PARTIAL` y podrás continuar con Cowork como fallback mientras resuelves la instalación.
 
