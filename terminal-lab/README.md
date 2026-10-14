@@ -145,6 +145,26 @@ git status --short -- notes/terminal-lab/prueba.txt
 
 **Checkpoint 4:** identifica el archivo que creaste, localiza `??` en la salida y explica la diferencia entre no rastreado y modificado.
 
+### Comprueba la identidad del commit
+
+Antes de guardar tu primer commit, comprueba qué autoría local usará Git:
+
+```bash
+git config --get user.name
+git config --get user.email
+```
+
+Si alguno no devuelve nada, configúralo solo para este repo con los datos que tú elijas:
+
+```bash
+git config --local user.name "Tu nombre"
+git config --local user.email "tu-correo-o-GitHub-noreply"
+```
+
+Esto define la autoría del commit; no es una contraseña ni inicia sesión en GitHub. Si tienes dudas sobre qué correo usar, detente y pregunta antes de continuar.
+
+**Checkpoint 4a:** puedes explicar quién aparecerá como autor del commit y distingues esa identidad de tus credenciales de GitHub.
+
 ## 5. Guarda un commit pequeño
 
 ```bash
@@ -249,9 +269,9 @@ Para salir:
 /exit
 ```
 
-Si Claude Code no está instalado, marca `PARTIAL`, conserva el mensaje y usa Cowork como fallback. No instales Node.js solo para seguir una ruta que no necesitas. Si eliges npm deliberadamente, requiere Node.js 22 o superior.
+Si Claude Code no está instalado, marca `PARTIAL`, conserva el mensaje y usa Cowork solo si tienes una modalidad compatible, conexión activa y acceso a tus archivos locales. Si tampoco tienes Cowork, sigue [`docs/fallback.md`](../docs/fallback.md) y registra la evidencia manual. No instales Node.js solo para seguir una ruta que no necesitas. Si eliges npm deliberadamente, requiere Node.js 22 o superior.
 
-La primera sesión puede pedir autenticación en el navegador. Si no tienes una modalidad de acceso compatible, conserva el mensaje y usa Cowork como fallback; el preflight offline no requiere una API key.
+La primera sesión puede pedir autenticación en el navegador. Si no tienes una modalidad de acceso compatible, conserva el mensaje y usa Cowork solo si cumples sus condiciones; de lo contrario, sigue el fallback manual. El preflight offline no requiere una API key.
 
 **Checkpoint 7:** puedes explicar qué observó Claude Code, qué no le permitiste modificar y cómo verificaste el estado de Git después.
 

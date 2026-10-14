@@ -62,7 +62,7 @@ def check_dataset() -> Check:
         if not valid:
             return Check("Dataset mínimo", "BLOCKED", "faltan casos o campos requeridos", True)
         return Check("Dataset mínimo", "PASS", f"{len(data)} casos sintéticos legibles", True)
-    except (OSError, json.JSONDecodeError) as exc:
+    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
         return Check("Dataset mínimo", "BLOCKED", str(exc), True)
 
 
@@ -97,40 +97,78 @@ def check_git_workspace() -> list[Check]:
         top = subprocess.run(
             [git_path, "rev-parse", "--show-toplevel"], cwd=ROOT, capture_output=True, text=True, timeout=8
         )
+        if top.returncode != 0:
+            checks.append(Check("Repo propio", "BLOCKED", "ejecuta el preflight desde tu repo clonado", True))
+            return checks
+
+        top_path = Path(top.stdout.strip()).resolve()
+        if top_path != ROOT.resolve():
+            checks.append(
+                Check(
+                    "Repo propio",
+                    "BLOCKED",
+                    "esta carpeta está dentro de otro repo Git; ejecuta el preflight desde la raíz de tu repo propio",
+                    True,
+                )
+            )
+            return checks
+
         remote = subprocess.run(
             [git_path, "remote", "get-url", "origin"], cwd=ROOT, capture_output=True, text=True, timeout=8
         )
-        if top.returncode != 0:
-            checks.append(Check("Repo propio", "BLOCKED", "ejecuta el preflight desde tu repo clonado", True))
-        elif remote.returncode != 0 or not remote.stdout.strip():
+        if remote.returncode != 0 or not remote.stdout.strip():
             checks.append(Check("Repo propio", "BLOCKED", "falta origin; crea y clona tu repo de GitHub", True))
+            return checks
+
+        host, owner, repo = parse_origin(remote.stdout)
+        normalized_host = host.lower().removeprefix("www.")
+        if normalized_host != "github.com":
+            safe_host = host or "host desconocido"
+            checks.append(Check("Repo propio", "PARTIAL", f"origin host {safe_host} no parece GitHub", True))
+        elif not owner or not repo:
+            checks.append(Check("Repo propio", "PARTIAL", "origin de GitHub sin owner/repo reconocibles", True))
+        elif owner.lower() == TEMPLATE_OWNER and repo.lower() == TEMPLATE_REPO:
+            checks.append(
+                Check(
+                    "Repo propio",
+                    "PARTIAL",
+                    f"origin GitHub {owner}/{repo}; crea tu repo propio con Use this template",
+                    True,
+                )
+            )
         else:
-            host, owner, repo = parse_origin(remote.stdout)
-            normalized_host = host.lower().removeprefix("www.")
-            if normalized_host != "github.com":
-                safe_host = host or "host desconocido"
-                checks.append(Check("Repo propio", "PARTIAL", f"origin host {safe_host} no parece GitHub", True))
-            elif not owner or not repo:
-                checks.append(Check("Repo propio", "PARTIAL", "origin de GitHub sin owner/repo reconocibles", True))
-            elif owner.lower() == TEMPLATE_OWNER:
-                checks.append(
-                    Check(
-                        "Repo propio",
-                        "PARTIAL",
-                        f"origin GitHub {owner}/{repo}; crea tu repo propio con Use this template",
-                        True,
-                    )
-                )
-            else:
-                head = subprocess.run(
-                    [git_path, "log", "-1", "--format=%h"], cwd=ROOT, capture_output=True, text=True, timeout=8
-                ).stdout.strip()
-                checks.append(
-                    Check("Repo propio", "PASS", f"origin GitHub {owner}/{repo}; commit local {head or 'pendiente'}", True)
-                )
-    except (OSError, subprocess.TimeoutExpired) as exc:
-        checks.append(Check("Repo propio", "BLOCKED", str(exc), True))
+            head = subprocess.run(
+                [git_path, "log", "-1", "--format=%h"], cwd=ROOT, capture_output=True, text=True, timeout=8
+            ).stdout.strip()
+            checks.append(
+                Check("Repo propio", "PASS", f"origin GitHub {owner}/{repo}; commit local {head or 'pendiente'}", True)
+            )
+    except (OSError, ValueError, subprocess.TimeoutExpired) as exc:
+        checks.append(Check("Repo propio", "BLOCKED", f"no se pudo verificar el repo: {exc}", True))
     return checks
+
+
+def check_git_identity(git_path: str) -> Check:
+    """Ensure the first commit has an explicit local or global author identity."""
+    values = {}
+    try:
+        for key in ("user.name", "user.email"):
+            result = subprocess.run(
+                [git_path, "config", "--get", key], cwd=ROOT, capture_output=True, text=True, timeout=8
+            )
+            values[key] = result.stdout.strip()
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        return Check("Identidad Git", "BLOCKED", f"no se pudo comprobar user.name/user.email: {exc}", True)
+
+    missing = [key for key in ("user.name", "user.email") if not values.get(key)]
+    if missing:
+        return Check(
+            "Identidad Git",
+            "BLOCKED",
+            "configura user.name y user.email antes del primer commit; son autoría local, no credenciales",
+            True,
+        )
+    return Check("Identidad Git", "PASS", "user.name y user.email están configurados", True)
 
 
 def check_claude() -> Check:
@@ -165,11 +203,24 @@ def check_conditional_tools() -> list[Check]:
 
 
 def all_checks() -> list[Check]:
-    return [check_python(), check_dataset(), *check_git_workspace(), check_claude(), *check_conditional_tools()]
+    checks = [check_python(), check_dataset(), *check_git_workspace()]
+    git_path = shutil.which("git")
+    if git_path:
+        checks.append(check_git_identity(git_path))
+    return [*checks, check_claude(), *check_conditional_tools()]
+
+
+def next_step_for(result: str) -> str:
+    if result == "BLOCKED":
+        return "detente, revisa docs/fallback.md y resuelve o documenta el bloqueo antes de crear el commit de cierre"
+    if result == "PARTIAL":
+        return "puedes avanzar con el fallback; registra qué quedó pendiente antes del commit de cierre"
+    return "completa la Terminal Lab, llena notes/intent.md y crea el commit de cierre después de revisar el staging"
 
 
 def write_report(checks: list[Check], result: str) -> None:
     REPORT.parent.mkdir(parents=True, exist_ok=True)
+    next_step = next_step_for(result)
     lines = [
         "# Reporte de preflight",
         "",
@@ -182,7 +233,7 @@ def write_report(checks: list[Check], result: str) -> None:
         "|---|---|---|",
     ]
     lines.extend(f"| {c.name} | {c.status} | {c.detail.replace('|', '/')} |" for c in checks)
-    lines.extend(["", f"**Resultado:** `{result}`", "", "Siguiente: completa la Terminal Lab, llena `notes/intent.md` y crea el commit de cierre después de revisar el staging."])
+    lines.extend(["", f"**Resultado:** `{result}`", "", f"Siguiente: {next_step}."])
     REPORT.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
@@ -197,16 +248,21 @@ def main() -> int:
     for check in checks:
         print(f"[{check.status}] {check.name}: {check.detail}")
     print("-" * 88)
+    print(f"DIAGNOSTICO: {result}")
+    try:
+        write_report(checks, result)
+    except (OSError, UnicodeError) as exc:
+        print("RESULTADO: ERROR_DE_EVIDENCIA")
+        print(f"No se pudo guardar evidence/preflight-report.md: {exc}")
+        print("Conserva esta salida en la terminal y resuelve el permiso antes de cerrar la actividad.")
+        return 1
     print(f"RESULTADO: {result}")
-    write_report(checks, result)
     print(f"Reporte escrito en: {REPORT.relative_to(ROOT)}")
+    print(f"Siguiente: {next_step_for(result)}.")
     if result == "BLOCKED":
-        print("Siguiente: revisa docs/fallback.md y resuelve el bloqueo antes de avanzar.")
         return 2
     if result == "PARTIAL":
-        print("Siguiente: puedes avanzar con el fallback; registra qué quedó pendiente.")
-    else:
-        print("Siguiente: completa la Terminal Lab, llena notes/intent.md y crea el commit de cierre después de revisar el staging.")
+        return 0
     return 0
 
 

@@ -4,7 +4,7 @@
 
 - El script corre sin red ni API key.
 - El dataset sintético se valida con Python estándar.
-- Python, Git, repo GitHub propio y Claude Code tienen estados explícitos.
+- Python, Git, raíz del workspace, identidad del commit, repo GitHub propio y Claude Code tienen estados explícitos.
 - Node.js/npm, GitHub CLI y base de datos aparecen como `DEFERRED`, no como bloqueos universales.
 - El script escribe `evidence/preflight-report.md` sin incluir secretos.
 - El README enseña cuenta de GitHub, Use this template, clonación, ZIP como fallback, diagnóstico, Terminal Lab, commit de cierre y push.
@@ -13,6 +13,7 @@
 - La Terminal Lab tiene un núcleo obligatorio de 35–45 minutos, una fast lane de 15–20 minutos, extensiones opcionales y Claude Code al final en modo de solo lectura.
 - El orden visible es diagnóstico → Terminal Lab o fast lane → intención → staging explícito → commit de cierre.
 - Los checkpoints cubren carpeta actual, archivos, Git status/diff, commit, error seguro y verificación posterior.
+- Las pruebas de endurecimiento cubren repo padre, remoto mal formado, dataset no UTF-8, identidad Git ausente y siguientes pasos por estado.
 - Las fuentes de instalación de Claude Code apuntan a documentación oficial verificada el 14 de octubre de 2026.
 
 ## Comandos de prueba
@@ -20,12 +21,14 @@
 ```bash
 PYTHONDONTWRITEBYTECODE=1 python3 preflight/preflight.py
 python3 -m json.tool preflight/casos-minimos.json
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s preflight -p 'test_*.py'
 ```
 
 En Windows PowerShell:
 
 ```powershell
 py preflight/preflight.py
+py -m unittest discover -s preflight -p "test_*.py"
 ```
 
 ## Limitaciones
