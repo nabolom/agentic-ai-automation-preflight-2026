@@ -1,6 +1,6 @@
 # Mi intención inicial
 
-Completa este archivo después del preflight y antes de hacer tu primer commit.
+Completa este archivo después del preflight y de la Terminal Lab, antes de hacer el commit de cierre.
 
 ## Proceso o problema que me gustaría explorar
 

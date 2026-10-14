@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="docs/visuales/preflight-banner.svg" alt="Preflight: trazabilidad, control de versiones y propiedad del espacio de trabajo" width="900">
+  <img src="docs/visuales/preflight-banner.svg" alt="Agentic AI Automation Preflight: trazabilidad, control de versiones y propiedad del espacio de trabajo" width="900">
 </p>
 
-<h1 align="center">Preflight</h1>
+<h1 align="center">Agentic AI Automation Preflight</h1>
 <p align="center"><strong>Prepara tu entorno en macOS o Windows</strong></p>
 
 <p align="center">
@@ -11,7 +11,7 @@
   <img alt="Claude Code" src="https://img.shields.io/badge/Claude%20Code-ruta%20principal-D97757?logo=anthropic&logoColor=white">
   <img alt="Cowork fallback" src="https://img.shields.io/badge/Cowork-fallback-6E56CF">
   <img alt="Node.js condicional" src="https://img.shields.io/badge/Node.js-condicional-5FA04E?logo=node.js&logoColor=white">
-  <img alt="Sin API key" src="https://img.shields.io/badge/API%20key-no%20requerida-2E8B57">
+  <img alt="Preflight offline sin API key" src="https://img.shields.io/badge/Preflight%20offline-sin%20API%20key-2E8B57">
 </p>
 
 <p align="center"><em>Antes de agentizar, aprende a cuidar tu propio espacio de trabajo.</em></p>
@@ -24,7 +24,11 @@ Al terminar, debes poder responder tres preguntas:
 2. ¿Qué hice, cuándo lo hice y cómo puedo volver atrás?
 3. ¿Qué herramientas tengo, cuál me falta y qué fallback usaré?
 
-## Empieza por tu propio repositorio
+## Empieza aquí: una secuencia de 75–110 minutos
+
+Sigue los pasos en orden. **No hagas el commit de cierre antes de completar la Terminal Lab.** La Terminal Lab crea un commit pequeño de práctica; al final harás un commit de cierre con tu reporte e intención.
+
+### 0. Crea tu propio repositorio
 
 No trabajes permanentemente dentro del repositorio de la clase. Primero crea tu cuenta de GitHub y luego usa este repositorio como plantilla:
 
@@ -32,14 +36,14 @@ No trabajes permanentemente dentro del repositorio de la clase. Primero crea tu 
 2. Crea un repo propio, por ejemplo `mi-proyecto-agentico`.
 3. Elige una visibilidad compatible con la información que manejarás. Para datos reales o de clientes, usa un repositorio privado.
 4. Clona **tu propio repo**, no el repo de la clase.
-5. Ejecuta el preflight desde esa copia.
 
-### Opción A — Terminal con Git
+### 1. Clona y entra a tu repo
+
+#### Opción A — Terminal con Git
 
 ```bash
 git clone https://github.com/TU-USUARIO/TU-REPO.git
 cd TU-REPO
-python3 preflight/preflight.py
 ```
 
 En Windows PowerShell:
@@ -47,47 +51,19 @@ En Windows PowerShell:
 ```powershell
 git clone https://github.com/TU-USUARIO/TU-REPO.git
 cd TU-REPO
-py preflight/preflight.py
 ```
 
-### Opción B — GitHub Desktop
+#### Opción B — GitHub Desktop
 
-Abre GitHub Desktop, inicia sesión, clona tu repo propio y selecciona **Open in terminal**. Después ejecuta el comando de Python indicado arriba.
+Abre GitHub Desktop, inicia sesión, clona tu repo propio y selecciona **Open in terminal**. Después continúa con los pasos de esta página.
 
-### Descargar ZIP: solo como fallback
+#### Descargar ZIP: solo como fallback
 
-Descargar ZIP sirve para no quedarse bloqueado, pero **no conserva el historial ni enseña el flujo de clonación, commit y push**. Si usas ZIP, crea después tu repo propio y sube el resultado desde GitHub Desktop o desde la web.
+Descargar ZIP sirve para no quedarse bloqueado, pero **no conserva el historial ni enseña el flujo de clonación, commit y push**. Si usas ZIP, registra el bloqueo y crea después tu repo propio desde GitHub Desktop o desde la web.
 
-## Guarda evidencia y haz tu primer commit
+### 2. Ejecuta el diagnóstico
 
-Después del preflight, conserva la salida en `evidence/preflight-report.md`. Escribe también en `notes/intent.md` qué proceso o problema te gustaría explorar, sin usar datos sensibles.
-
-```bash
-mkdir -p notes evidence
-git add .
-git commit -m "chore: complete environment preflight"
-git push
-```
-
-En Windows, puedes crear las carpetas desde el Explorador de archivos o usar:
-
-```powershell
-New-Item -ItemType Directory -Force notes,evidence
-```
-
-Tu primer resultado no es un agente. Es una URL propia, un primer commit, un reporte y una decisión explícita sobre el siguiente paso.
-
-## Terminal Lab — paso obligatorio
-
-Antes de pasar a Claude Code, completa el [Terminal Lab](terminal-lab/README.md). El núcleo toma aproximadamente 35–45 minutos y enseña a ubicarte, navegar, crear y leer archivos, revisar Git, hacer un commit pequeño y leer un error seguro.
-
-La extensión intermedia trabaja búsqueda, pipes, historial y ramas. La extensión avanzada conecta variables de entorno, códigos de salida y una primera interacción de solo lectura con Claude Code. Las extensiones son opcionales; el núcleo es común para toda la cohorte.
-
-La secuencia didáctica es:
-
-> observar → explicar → proponer → revisar → ejecutar → verificar → versionar
-
-## Ejecuta el diagnóstico
+Ejecuta el preflight desde la raíz de tu repo propio:
 
 ```bash
 python3 preflight/preflight.py
@@ -99,9 +75,90 @@ En Windows:
 py preflight/preflight.py
 ```
 
-El script no instala nada, no llama a una API y no necesita una API key. Escribe un reporte local sin secretos.
+El script no instala nada, no llama a una API y no necesita una API key. Escribe `evidence/preflight-report.md` sin guardar secretos.
 
-### Cómo leer el resultado
+Lee el resultado, pero **no hagas todavía el commit general**. Si aparece `PARTIAL`, conserva el mensaje y sigue con el fallback correspondiente.
+
+### 3. Elige tu ritmo
+
+#### Ruta normal — núcleo común, 35–45 minutos
+
+Completa el [Terminal Lab](terminal-lab/README.md). Aprenderás a ubicarte, navegar, crear y leer archivos, revisar Git, hacer un commit pequeño y leer un error seguro.
+
+#### Fast lane — 15–20 minutos, para quien ya trae evidencia
+
+Puedes saltar el núcleo si ya puedes demostrar las cinco piezas siguientes:
+
+- un repo propio de GitHub;
+- un commit reciente que puedas localizar;
+- `git status` y `git diff` explicados con tus palabras;
+- una automatización, prototipo o proceso que quieras revisar;
+- una falla, decisión o cuello de botella documentado.
+
+En la fast lane, completa el preflight, escribe tu intención y pide a Claude Code o Cowork una inspección de solo lectura. La evidencia equivalente debe quedar en tu repo. Si no puedes demostrar alguna pieza, vuelve al núcleo.
+
+La secuencia didáctica es:
+
+> observar → explicar → proponer → revisar → ejecutar → verificar → versionar
+
+### 4. Escribe intención y guarda el commit de cierre
+
+Después de la Ruta normal o la fast lane:
+
+1. Revisa `evidence/preflight-report.md`.
+2. Completa `notes/intent.md` con el proceso, problema o automatización que quieres explorar.
+3. Añade solo los archivos que entiendes.
+4. Revisa el staging antes de confirmar.
+
+```bash
+git add evidence/preflight-report.md notes/intent.md notes/terminal-lab/prueba.txt
+git diff --cached
+git commit -m "chore: complete environment preflight"
+git push
+```
+
+Si elegiste la fast lane y no tienes `notes/terminal-lab/prueba.txt`, añade únicamente los archivos que realmente creaste:
+
+```bash
+git add evidence/preflight-report.md notes/intent.md
+git diff --cached
+git commit -m "chore: complete environment preflight"
+git push
+```
+
+En Windows PowerShell se usan los mismos comandos de Git. No uses `git add .` sin revisar qué estás incluyendo.
+
+### 5. Entra a Claude Code o usa el fallback
+
+Si Claude Code está instalado:
+
+```bash
+claude --version
+claude doctor
+claude
+```
+
+En Windows PowerShell se usan los mismos comandos. La primera sesión puede pedir autenticación en el navegador. Claude Code requiere una modalidad de acceso compatible; el plan gratuito de claude.ai no incluye Claude Code. No guardes credenciales ni API keys en el repo.
+
+Dentro de Claude Code, empieza con una petición de solo lectura:
+
+```text
+Explica en lenguaje sencillo dónde estoy, qué archivos relevantes ves y cuál es el estado de Git. No modifiques ningún archivo ni ejecutes comandos destructivos.
+```
+
+Si Claude Code no está disponible, marca `PARTIAL`, conserva el reporte y usa Cowork o el fallback documentado. El objetivo del preflight es llegar con evidencia, no convertir esta actividad en una sesión interminable de instalación.
+
+## Ya terminaste cuando puedes mostrar
+
+- la URL de tu repo propio;
+- `evidence/preflight-report.md`;
+- `notes/intent.md`;
+- `notes/terminal-lab/prueba.txt`, si hiciste la Ruta normal;
+- un commit visible en GitHub;
+- qué herramienta usarás y qué fallback tienes;
+- una decisión o siguiente paso que quieras llevar a la sesión técnica.
+
+## Cómo leer el resultado
 
 - **PASS:** lo necesario para este checkpoint está disponible.
 - **PARTIAL:** puedes avanzar, pero falta una herramienta de la ruta principal o debes usar un fallback.
@@ -110,19 +167,19 @@ El script no instala nada, no llama a una API y no necesita una API key. Escribe
 
 ## Qué revisa y qué no
 
-### Revisión base
+El preflight comprueba Python, Git, que estés trabajando dentro de un repositorio GitHub que no parece ser la plantilla, el dataset sintético y la disponibilidad de Claude Code.
 
-El preflight comprueba Python, Git, que estés trabajando dentro de un repositorio GitHub propio, el dataset sintético y la disponibilidad de Claude Code.
+La comprobación del repo es indirecta: detecta un remoto `origin` de GitHub que no parece contener el nombre de la plantilla. No inicia sesión en GitHub ni puede demostrar por sí sola quién es la persona propietaria.
 
 Claude Code es la ruta principal del curso. Si no está disponible, el resultado será `PARTIAL` y podrás continuar con Cowork como fallback mientras resuelves la instalación.
 
 ### Dependencias condicionales
 
-Node.js y npm se detectan como información, pero **no se marcan como bloqueo**. El instalador nativo recomendado de Claude Code no necesita Node.js; Node.js solo entra si eliges una herramienta o proyecto que lo requiera. La base de datos tampoco se instala aquí: se decide después de definir qué quieres agentizar y qué arquitectura necesita.
+Node.js y npm se detectan como información, pero **no se marcan como bloqueo**. El instalador nativo recomendado de Claude Code no necesita Node.js. La ruta npm sigue disponible si la eliges deliberadamente y requiere Node.js 22 o superior; no conviertas ninguna de esas rutas en instalación universal. La base de datos se decide después de definir qué quieres agentizar y qué arquitectura necesita.
 
 GitHub CLI (`gh`) es útil, pero no es requisito. Git o GitHub Desktop sí forman parte del aprendizaje porque permiten conservar historial, revisar cambios y recuperar decisiones.
 
-## Qué significa “ser dueño(a) de tu espacio”
+## Qué significa ser dueño(a) de tu espacio
 
 Tu repo propio será el lugar donde guardarás decisiones, notas, evidencias, prompts y cambios revisables. La meta no es llenar carpetas: es que otra persona pueda entender qué intentaste, qué cambió y cómo volver a un estado anterior.
 
@@ -130,13 +187,14 @@ No subas API keys, contraseñas, transcripts con datos personales ni informació
 
 ## Si algo falla
 
-Consulta [`docs/fallback.md`](docs/fallback.md). Si Claude Code falla, no conviertas la clase en una instalación interminable: conserva el mensaje, usa Cowork o el fallback de papel y registra qué quedó pendiente.
+Consulta [`docs/fallback.md`](docs/fallback.md). Si Claude Code falla, no conviertas la actividad en una instalación interminable: conserva el mensaje, usa Cowork o el fallback de papel y registra qué quedó pendiente.
 
 Para aprender la diferencia entre descargar, clonar, hacer commit y hacer push, abre [`docs/git-y-github.md`](docs/git-y-github.md).
 
-## Fuentes oficiales de instalación
+## Fuentes oficiales
 
 - [Claude Code — instalación y requisitos](https://code.claude.com/docs/en/setup)
 - [Claude Code — quickstart](https://code.claude.com/docs/en/quickstart)
+- [Claude Code — guía de terminal](https://code.claude.com/docs/en/terminal-guide)
 
 Este repo **no contiene S2, comandos internos del Mentor, rúbricas del facilitador ni la solución completa del camino dorado**.

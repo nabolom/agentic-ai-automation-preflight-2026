@@ -15,6 +15,17 @@ La meta es que puedas trabajar con tu repo propio y entender qué está pasando 
 
 La competencia que practicamos es **trazabilidad, control de versiones y propiedad operativa de tu espacio de trabajo**.
 
+## Fast lane — 15–20 minutos
+
+Usa esta ruta solo si ya puedes demostrar:
+
+- un repo propio de GitHub y un commit reciente;
+- `git status` y `git diff` explicados con tus palabras;
+- una automatización, prototipo o proceso real;
+- una falla, decisión o cuello de botella documentado.
+
+Ejecuta el preflight, completa `notes/intent.md` y pide a Claude Code o Cowork una inspección de solo lectura. La evidencia debe quedar versionada. Si no puedes demostrar alguna pieza, vuelve al núcleo común.
+
 ## Antes de empezar
 
 Trabaja dentro de tu repo propio, creado desde la plantilla de [Agentic AI Automation Preflight](https://github.com/nabolom/agentic-ai-automation-preflight-2026). No pegues API keys, contraseñas ni información de clientes.
@@ -23,6 +34,8 @@ Elige una terminal:
 
 - **macOS:** Terminal, Warp u otra terminal.
 - **Windows:** PowerShell o Windows Terminal. GitHub Desktop es un fallback visual para Git.
+
+Si nunca has usado una terminal, consulta también la [guía oficial de terminal de Claude Code](https://code.claude.com/docs/en/terminal-guide). No necesitas leerla completa: úsala para abrir la terminal correcta y entender el prompt.
 
 Warp es una opción válida, pero no es requisito. Una terminal es el lugar donde ejecutas comandos; VS Code es un editor/IDE donde puedes abrir y editar los archivos. Puedes usar ambos juntos.
 
@@ -190,6 +203,20 @@ Esta es la primera interacción controlada. Primero comprueba la instalación:
 claude --version
 ```
 
+Si el comando no aparece, revisa tu `PATH`:
+
+macOS/Linux:
+
+```bash
+command -v claude
+```
+
+Windows PowerShell:
+
+```powershell
+Get-Command claude
+```
+
 Si responde, puedes hacer un diagnóstico de solo lectura:
 
 ```bash
@@ -222,7 +249,9 @@ Para salir:
 /exit
 ```
 
-Si Claude Code no está instalado, marca `PARTIAL`, conserva el mensaje y usa Cowork como fallback. No instales Node.js únicamente para intentar una ruta npm deprecada.
+Si Claude Code no está instalado, marca `PARTIAL`, conserva el mensaje y usa Cowork como fallback. No instales Node.js solo para seguir una ruta que no necesitas. Si eliges npm deliberadamente, requiere Node.js 22 o superior.
+
+La primera sesión puede pedir autenticación en el navegador. Si no tienes una modalidad de acceso compatible, conserva el mensaje y usa Cowork como fallback; el preflight offline no requiere una API key.
 
 **Checkpoint 7:** puedes explicar qué observó Claude Code, qué no le permitiste modificar y cómo verificaste el estado de Git después.
 
