@@ -13,6 +13,7 @@
 - La Terminal Lab tiene un núcleo obligatorio de 35–45 minutos, una fast lane de 15–20 minutos, extensiones opcionales y Claude Code al final en modo de solo lectura.
 - El orden visible es diagnóstico → Terminal Lab o fast lane → intención → staging explícito → commit de cierre.
 - Los checkpoints cubren carpeta actual, archivos, Git status/diff, commit, error seguro y verificación posterior.
+- H8 cubre una edición temporal de `prueba.txt`, `git diff`, `git restore` y la diferencia entre recuperar antes y después de un commit.
 - Las pruebas de endurecimiento cubren repo padre, remoto mal formado, dataset no UTF-8, identidad Git ausente y siguientes pasos por estado.
 - Las fuentes de instalación de Claude Code apuntan a documentación oficial verificada el 14 de octubre de 2026.
 

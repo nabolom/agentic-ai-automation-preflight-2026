@@ -91,6 +91,17 @@ class PreflightHardeningTests(unittest.TestCase):
             self.assertEqual(check.status, "BLOCKED")
             self.assertIn("user.name", check.detail)
 
+    def test_terminal_lab_practica_edicion_reversible(self):
+        lab = (HERE.parent / "terminal-lab" / "README.md").read_text(encoding="utf-8")
+        for fragment in (
+            "## 5a. Haz un cambio temporal y recupéralo",
+            "git diff -- notes/terminal-lab/prueba.txt",
+            "git restore -- notes/terminal-lab/prueba.txt",
+            "Si el cambio ya estuviera en un commit",
+        ):
+            with self.subTest(fragment=fragment):
+                self.assertIn(fragment, lab)
+
     def test_report_next_step_matches_result(self):
         with tempfile.TemporaryDirectory() as temp:
             report = Path(temp) / "preflight-report.md"
