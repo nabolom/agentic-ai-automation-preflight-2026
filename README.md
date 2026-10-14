@@ -77,6 +77,16 @@ New-Item -ItemType Directory -Force notes,evidence
 
 Tu primer resultado no es un agente. Es una URL propia, un primer commit, un reporte y una decisión explícita sobre el siguiente paso.
 
+## Terminal Lab — paso obligatorio
+
+Antes de pasar a Claude Code, completa el [Terminal Lab](terminal-lab/README.md). El núcleo toma aproximadamente 35–45 minutos y enseña a ubicarte, navegar, crear y leer archivos, revisar Git, hacer un commit pequeño y leer un error seguro.
+
+La extensión intermedia trabaja búsqueda, pipes, historial y ramas. La extensión avanzada conecta variables de entorno, códigos de salida y una primera interacción de solo lectura con Claude Code. Las extensiones son opcionales; el núcleo es común para toda la cohorte.
+
+La secuencia didáctica es:
+
+> observar → explicar → proponer → revisar → ejecutar → verificar → versionar
+
 ## Ejecuta el diagnóstico
 
 ```bash

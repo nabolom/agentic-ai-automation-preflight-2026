@@ -10,6 +10,8 @@
 - El README enseña cuenta de GitHub, Use this template, clonación, ZIP como fallback, commit y push.
 - La portada centra el título y muestra etiquetas de Python, Git/GitHub, Claude Code, Cowork, Node.js y API key.
 - Las instrucciones distinguen macOS, Windows PowerShell y GitHub Desktop.
+- La Terminal Lab tiene un núcleo obligatorio de 35–45 minutos, extensiones opcionales y Claude Code al final en modo de solo lectura.
+- Los checkpoints cubren carpeta actual, archivos, Git status/diff, commit, error seguro y verificación posterior.
 - Las fuentes de instalación de Claude Code apuntan a documentación oficial verificada el 14 de octubre de 2026.
 
 ## Comandos de prueba
